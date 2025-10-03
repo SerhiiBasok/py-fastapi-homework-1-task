@@ -31,14 +31,11 @@ async def get_movies(
     prev_page: Optional[str] = None
     next_page: Optional[str] = None
     if page > 1:
-        prev_page: Optional[int] = page - 1 if page > 1 else None
+        prev_page = f"/theater/movies/?page={page - 1}&per_page={per_page}"
     if page < total_pages:
-        next_page: Optional[int] = page + 1 if page < total_pages else None
+        next_page = f"/theater/movies/?page={page + 1}&per_page={per_page}"
     return MovieListResponseSchema(
-        movies=[
-            MovieDetailResponseSchema.model_validate(m, from_attributes=True)
-            for m in movies
-        ],
+        movies=movies,
         prev_page=prev_page,
         next_page=next_page,
         total_pages=total_pages,
