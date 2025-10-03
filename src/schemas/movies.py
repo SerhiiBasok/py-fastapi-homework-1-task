@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 from datetime import date
 
+
 class MovieDetailResponseSchema(BaseModel):
     id: int
     name: str
@@ -20,6 +21,7 @@ class MovieDetailResponseSchema(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
 class MovieListResponseSchema(BaseModel):
     movies: list[MovieDetailResponseSchema]
     prev_page: Optional[int]
@@ -28,6 +30,3 @@ class MovieListResponseSchema(BaseModel):
     total_items: int
 
     model_config = ConfigDict(from_attributes=True)
-
-
-
